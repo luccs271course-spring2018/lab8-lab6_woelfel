@@ -36,7 +36,7 @@ public interface SimpleQueue<E> {
    * @return The object at the front of the queue if one exists, null otherwise
    */
   E poll();
-
+ 
   /**
    * Returns true if the queue is empty; otherwise, returns false.
    *
