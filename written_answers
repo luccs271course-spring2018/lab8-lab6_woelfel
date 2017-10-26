@@ -1,0 +1,10 @@
+Why does FixedArrayQueue require an explicit constructor?
+In order to create an iterator
+
+What happens when you offer an item to a full FixedArrayQueue?
+ArrayIndexOutOfBoundsException will be thrown
+
+What happens when you poll an empty FixedArrayQueue?
+NULL
+
+What is the time and (extra) space complexity of each of the FixedArrayQueue methods?
