@@ -1,7 +1,6 @@
 package edu.luc.cs271.arrayqueue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FixedArrayQueue<E> implements SimpleQueue<E> {
@@ -16,7 +15,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   private final E[] data;
 
-  // TODO why do we need an explicit constructor?
+  // done why do we need an explicit constructor?
 
   @SuppressWarnings("unchecked")
   public FixedArrayQueue(final int capacity) {
@@ -29,26 +28,44 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public boolean offer(final E obj) {
-    // TODO
-    return false;
+    // done
+    if (size == capacity) {
+      return false;
+    }
+    size++;
+    rear = (rear + 1) % capacity;
+    data[rear] = obj;
+    return true;
   }
 
   @Override
   public E peek() {
-    // TODO
+    // done
+    if (!isEmpty()) {
+      return data[rear];
+    }
     return null;
   }
 
   @Override
   public E poll() {
-    // TODO
-    return null;
+    // done
+    if (isEmpty()) {
+      return null;
+    }
+    E result = data[front];
+    front = (front + 1) % capacity;
+    size--;
+    return result;
   }
 
   @Override
   public boolean isEmpty() {
-    // TODO
-    return true;
+    // done
+    if (size == 0) {
+      return true;
+    }
+    return false;
   }
 
   @Override
@@ -58,7 +75,13 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public List<E> asList() {
-    // TODO implement using an ArrayList preallocated with the right size
-    return Arrays.asList();
+    // done implement using an ArrayList preallocated with the right size
+    List<E> list = new ArrayList<E>(capacity);
+    while (!isEmpty()) {
+      list.add(data[front]);
+      front = (front + 1) % capacity;
+      size--;
+    }
+    return list;
   }
 }
